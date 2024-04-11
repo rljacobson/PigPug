@@ -136,13 +136,13 @@ generalisation of the notion of most general unifier will be given
 later; in general rather than a single most general unifier, there will
 be an infinite set of maximally general ones.
 
-Define an $N$-application and composition operator, $*$, by:
+Define an $N$-application and composition operator, $\ast$, by:
 \begin{align*}
-&t*\sigma=N(t\sigma)\\
-&\sigma*\mu=N(\sigma\mu)
+&t\ast\sigma=N(t\sigma)\\
+&\sigma\ast\mu=N(\sigma\mu)
 \end{align*}
 
-It can be shown that $*$ possesses properties analogous to ordinary
+It can be shown that $\ast$ possesses properties analogous to ordinary
 application and composition independently of the particular $\mathrm{T}$ and
 $N$ chosen (see Robinson 1965).
 
@@ -193,7 +193,7 @@ for suitable strings $X, Y$ and $Z$.
 
 \begin{figure}[h]
 %	\centering
-\begin{forest} 
+\begin{forest}
 [
 	{$f(x, z)$\\ $f(a, f(y, b))$}
 	[
@@ -245,23 +245,23 @@ for suitable strings $X, Y$ and $Z$.
 	symbols, stop with failure.
 	\item
 	If $t'$ and $u'$ are both variables, change $t$,
-	$u$ and $\sigma$ to $t*\lambda$, $u*\lambda$ and
-	$\sigma*\lambda$ where $\lambda$ is either
+	$u$ and $\sigma$ to $t\ast\lambda$, $u\ast\lambda$ and
+	$\sigma\ast\lambda$ where $\lambda$ is either
 	$\{u'/t'\}$,
 	$\{f(u',t')/t'\}$ or
 	$\{f(t',u')/u'\}$.
 	\item
 	If $t'$ is a variable and $u'$ is not, then, if
 	$t'$ occurs in $u'$, stop with failure; otherwise
-	change $t$, $u$ and $\sigma$ to $t*\lambda$, $u*\lambda$ and
-	$\sigma*\lambda$ where $\lambda$ is either
+	change $t$, $u$ and $\sigma$ to $t\ast\lambda$, $u\ast\lambda$ and
+	$\sigma\ast\lambda$ where $\lambda$ is either
 	$\{u'/t'\}$ or
 	$\{f(u',t')/t'\}$.
 	\item
 	If $u'$ is a variable and $t'$ is not, then, if
 	$u'$ occurs in $t'$, stop with failure; otherwise
-	change $t$, $u$ and $\sigma$ to $t*\lambda$, $u*\lambda$ and
-	$\sigma*\lambda$ where $\lambda$ is either
+	change $t$, $u$ and $\sigma$ to $t\ast\lambda$, $u\ast\lambda$ and
+	$\sigma\ast\lambda$ where $\lambda$ is either
 	$\{t'/u'\}$, or
 	$\{f(t',u')/u'\}$.
 	\item
@@ -291,7 +291,7 @@ Infinite failures are also possible: for example, take
 
 
 \begin{figure}[h]
-\begin{forest} 
+\begin{forest}
 	[
 		{$g(x, xa)$\\ $g(y, ay)$}
 		[
@@ -364,10 +364,10 @@ substitution, $\sigma$, \emph{solves} Eq and Ineq iff:
 	If $x$ is a variable in Eq and Ineq then $x\sigma$ is a numeral
 	and otherwise $x\sigma$ is $x$.
 	\item
-	If $t = u$ is in Eq then $t*\sigma$ is identical to $u*\sigma$.
+	If $t = u$ is in Eq then $t\ast\sigma$ is identical to $u\ast\sigma$.
 	\item
 	Every member of Ineq has a member, $t \neq u$, such that
-	$t*\sigma$ is distinct from $u*\sigma$.
+	$t\ast\sigma$ is distinct from $u\ast\sigma$.
 \end{enumerate}
 
 For example, $\{3/x\}$ solves ($\{x + 2 = 5\}$,
@@ -389,22 +389,22 @@ normal terms $t$ and $u$ is:
 	Remove equations of the form $t = t$ from Unify.
 	\item
 	If Unify is empty, let $\mu$ be a substitution which solves Eq and
-	Ineq, change $\sigma$ to $\sigma*\mu$ and stop with success.
+	Ineq, change $\sigma$ to $\sigma\ast\mu$ and stop with success.
 	\item
 	Remove an equation, $t = u$, from Unify.
 	\item
 	If $t$ and $u$ are variables, replace Unify, Eq, Ineq and
-	$\sigma$ by Unify $*\lambda$, Eq $*\lambda$, Ineq $*\lambda$
-	and $\sigma*\lambda$ respectively, where $\lambda = \{t/u\}$.
+	$\sigma$ by Unify $\ast\lambda$, Eq $\ast\lambda$, Ineq $\ast\lambda$
+	and $\sigma\ast\lambda$ respectively, where $\lambda = \{t/u\}$.
 	\item
 	Suppose $t$ is a variable and $u$ is a number term. If $t$
 	occurs in $u$, put $t = u$ in Eq; otherwise replace Unify, Eq,
-	Ineq and $\sigma$ by $\mathrm{Unify}*\lambda$, $\mathrm{Eq}*\lambda$, $\mathrm{Ineq}*\lambda$ and $\sigma*\lambda$ respectively where
+	Ineq and $\sigma$ by $\mathrm{Unify}\ast\lambda$, $\mathrm{Eq}\ast\lambda$, $\mathrm{Ineq}\ast\lambda$ and $\sigma\ast\lambda$ respectively where
 	$\lambda = \{u/t\}$.
 	\item
 	Suppose $t$ is a variable and $u$ is a term, but not a number one.
 	If $t$ occurs in $u$, stop with failure; otherwise replace Unify,
-	Eq, Ineq and $\sigma$ by $\mathrm{Unify}*\lambda$, $\mathrm{Eq}*\lambda$, $\mathrm{Ineq}*\lambda$ and $\sigma*\lambda$ respectively, where
+	Eq, Ineq and $\sigma$ by $\mathrm{Unify}\ast\lambda$, $\mathrm{Eq}\ast\lambda$, $\mathrm{Ineq}\ast\lambda$ and $\sigma\ast\lambda$ respectively, where
 	$\lambda = \{u/t\}$.
 	\item
 	If $u$ is a variable and $t$ is not, proceed as in steps 6 and 7,
@@ -415,7 +415,7 @@ normal terms $t$ and $u$ is:
 	$t = u$ in Eq.
 	\item
 	If $t$ and $u$ begin with the same function symbol, $f$, say,
-	and one of them is not a number term, then add 
+	and one of them is not a number term, then add
 	\begin{quote}
 	$t_{1} = u_{1}$,
 	$\ldots$, $t_{n} = u_{n}$ to Unify where $t = f(t_{1}$,
@@ -498,7 +498,7 @@ obtained from $v(t)$ by replacing that distinguished occurrence of
 $t$ in $v$ by one of $u$.
 
 The letters $L$, $M$, $\ldots$ range over literals. The general
-form of a literal is $(\pm)$$P(t_{1},\ldots,t_{n})$. $\bar{L}$ is
+form of a literal is $(\pm)P(t_{1},\ldots,t_{n})$. $\bar{L}$ is
 like $L$, but has opposite sign.
 
 The letters $C$, $D$, $\ldots$ range over clauses. By convention,
@@ -538,8 +538,8 @@ language $L$. In order to allow for Skolem function symbols we make:
 each degree, none of which occur in $\mathrm{T}$.
 \end{quote}
 
-Suppose $L$ has the form $(\pm)$$P(t_{1}, \ldots,\,t_{n})$ and
-$M$ has the form $(\pm)$$Q(u_{1}, \ldots,\,u_{m})$. Then if $P$
+Suppose $L$ has the form $(\pm)P(t_{1}, \ldots,\,t_{n})$ and
+$M$ has the form $(\pm)Q(u_{1}, \ldots,\,u_{m})$. Then if $P$
 is not the equality symbol, $\vdash_{\mathrm{T}}L \equiv M$ iff
 $P$ and $Q$ are identical, $L$ and $M$ have the same sign and,
 $\vdash_{\mathrm{T}}t_{i} = u_{i}$,
@@ -557,8 +557,8 @@ Define an equivalence relation, $\sim$, between literals by:
 \begin{quote}
 If the equality symbol does not occur in $L$, then $L \sim M$ iff
 $\vdash_{\mathrm{T}}L \equiv M$.\\
-If it occurs with the same sign in both, $L$ is $(\pm)$$t = u$ and
-$M$ is $(\pm)$$v = w$, then $L \sim M$ iff
+If it occurs with the same sign in both, $L$ is $(\pm)t = u$ and
+$M$ is $(\pm)v = w$, then $L \sim M$ iff
 $\vdash_{\mathrm{T}}(t = v)\wedge(u = w)$ or
 $\vdash_{\mathrm{T}}(t = w)\wedge(u = v)$.\\
 Otherwise, $L \nsim M$.
@@ -576,7 +576,7 @@ $D = D'\lor D''$.
 If
 $C = C'\lor t_{1} = u_{1}\vee\ldots\lor t_{n} = u_{n}(n > 0)$,
 $D=D'\lor D''$,
-$(\pm)\,P(v_{1},\ldots,v_{j_{0}},$$\ldots,v_{m})$ is in
+$(\pm)\,P(v_{1},\ldots,v_{j_{0}}, \ldots,v_{m})$ is in
 $D''$, $\{t_{i} = u_{i}\mid i=1,\,n\}$ and
 $D''$ are $\mathrm{T}$-units and
 $\vdash_{\tau}v_{j_{0}} = w(t_{1})$ then
@@ -604,8 +604,8 @@ $\vdash_{\rm T}\,u=v$ then for some $w$, $v\approx_{1}w$ and
 $\vdash_{\rm T}\,w=t$, that if $\vdash_{\rm T}\,t=u$ and
 $u_{1}\approx_{1}w$ then $t\approx_{1}w$, and if
 $t_{j}\approx_{1}u$ then
-$f(t_{1},\ldots,t_{n})\approx_{1}f(t_{1},\ldots,$$t_{j-1},u$,
-$t_{j+1},\ldots,$$t_{n})$.
+$f(t_{1},\ldots,t_{n})\approx_{1}f(t_{1},\ldots, t_{j-1},u$,
+$t_{j+1},\ldots, t_{n})$.
 
 Now define $\approx$ by: $t\approx u$ iff there are
 $t_{i}(n\geqslant 1$ and $1\leqslant i\leqslant n)$ such that
@@ -659,7 +659,7 @@ In the first case, $\vdash_{\mathrm{Eq}\cup\mathrm{T}} t=u$ and so,
 with $\approx$ as in lemma 1, $t\approx u$. So, by successive ground
 $\mathrm{T}$-paramodulations from $\textrm{Eq}$ into $t\neq u$,
 one can obtain a clause $t'\neq u$ such that
-$\vdash_{\mathrm{T}}$$t'=u$. From this the null clause is
+$\vdash_{\mathrm{T}} t'=u$. From this the null clause is
 obtained by a ground $\mathrm{T}$-trivialisation of degree 1.
 
 The second case is similar but uses a ground $\mathrm{T}$-resolution.
@@ -947,7 +947,7 @@ and $L'$ away from $V$ iff:
 	If $M$, $M'$ are distinct members of $\Delta$ then for
 	every $\lambda$, $M\lambda\nsim M'$.
 	\item
-	If $M$ is in $\Delta$, Var $(M)\cap$$V$=$\varnothing$.
+	If $M$ is in $\Delta$, Var $(M)\cap V$=$\varnothing$.
 \end{enumerate}
 
 In our opinion, this concept cannot, in general, be made the basis of a
@@ -974,7 +974,7 @@ and $\langle x, t\rangle$ is special and the $x_{i}$ are distinct
 and not in $t$.
 
 Given an occurrence of a term $u$ in another $v$ there is a unique,
-to within alphabetic variance, special pair $\langle x,$$t\rangle$
+to within alphabetic variance, special pair $\langle x, t\rangle$
 and a substitution $\eta$ such that:
 
 \begin{enumerate}
@@ -999,7 +999,7 @@ special pairs such that:
 	\item
 	No two distinct members of $Sp(V)$ are alphabetic variants.
 	\item
-	If $\langle x,$$t\rangle$ is in $Sp(V),$ Var
+	If $\langle x, t\rangle$ is in $Sp(V),$ Var
 	$(t)\cap V=\varnothing$.
 \end{enumerate}
 
@@ -1456,4 +1456,4 @@ Research Council.
 		logic}. Reading, Mass.: Addison-Wesley.
 \end{itemize}
 
-\end{document}          
+\end{document}

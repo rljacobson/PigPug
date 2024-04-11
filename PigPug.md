@@ -45,10 +45,10 @@ $N(t)$ might be the value.
 
 The simplification function can be extended to one from literals and
 clauses to, respectively, literals and clauses by:
-$$\begin{aligned}
+$$\begin{align*}
     &N((\pm)P(t_{1},\ \cdots,\ t_{n})) = (\pm)P(N(t_{1}),\ \cdots,\ N(t_{n}))\\
     &N(C)=\{N(L)\mid L\in C\}
-\end{aligned}$$
+\end{align*}$$
 and similarly to other expressions.
 
 We shall look for a complete set of rules $r_{1},\ \cdots,\ r_{m}$ such
@@ -90,13 +90,13 @@ generalisation of the notion of most general unifier will be given
 later; in general rather than a single most general unifier, there will
 be an infinite set of maximally general ones.
 
-Define an $N$-application and composition operator, $*$, by:
+Define an $N$-application and composition operator, $\ast$, by:
 $$\begin{aligned}
-&t*\sigma=N(t\sigma)\\
-&\sigma*\mu=N(\sigma\mu)
+&t\ast\sigma=N(t\sigma)\\
+&\sigma\ast\mu=N(\sigma\mu)
 \end{aligned}$$
 
-It can be shown that $*$ possesses properties analogous to ordinary
+It can be shown that $\ast$ possesses properties analogous to ordinary
 application and composition independently of the particular $\mathrm{T}$
 and $N$ chosen (see Robinson 1965).
 
@@ -139,8 +139,37 @@ The disagreement pair of two terms $t$ and $u$ is the rightmost pair of
 distinct terms $t'$ and $u'$, such that $t$ and $u$ have the forms
 $Xt'Y$ and $Xu'Z$ respectively, for suitable strings $X, Y$ and $Z$.
 
-![Figure 1](fig1.png)
-Figure 1
+<figure>
+<div class="forest">
+<p>] ] [ <span><span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>x</em>,<em>z</em>))</span><br />
+<span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>b</em>))</span></span>
+[ <span><span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>z</em>))</span><br />
+<span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>b</em>))</span></span>
+[ <span><span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>b</em>))</span><br />
+<span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>b</em>))</span></span>
+[<em>success] ] ] [ <span><span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>f</em>(<em>x</em>,<em>z</em>)))</span><br />
+<span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>y</em>,<em>b</em>))</span></span>
+[<em>failure] ] [ <span><span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>x</em>,<em>z</em>))</span><br />
+<span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>x</em>,<em>f</em>(<em>y</em>,<em>b</em>)))</span></span>
+[ <span><span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>x</em>,<em>f</em>(<em>y</em>,<em>b</em>)))</span><br />
+<span
+class="math inline"><em>f</em>(<em>a</em>,<em>f</em>(<em>x</em>,<em>f</em>(<em>y</em>,<em>b</em>)))</span></span>
+[<em>success] ] ] ] ]</em></em></em></p>
+</div>
+<p><br />
+Figure 1</p>
+</figure>
 
 1.  Set $\sigma$ equal to $\varepsilon$.
 
@@ -152,17 +181,17 @@ Figure 1
     failure.
 
 5.  If $t'$ and $u'$ are both variables, change $t$, $u$ and $\sigma$ to
-    $t*\lambda$, $u*\lambda$ and $\sigma*\lambda$ where $\lambda$ is
+    $t\ast\lambda$, $u\ast\lambda$ and $\sigma\ast\lambda$ where $\lambda$ is
     either $\{u'/t'\}$, $\{f(u',t')/t'\}$ or $\{f(t',u')/u'\}$.
 
 6.  If $t'$ is a variable and $u'$ is not, then, if $t'$ occurs in $u'$,
     stop with failure; otherwise change $t$, $u$ and $\sigma$ to
-    $t*\lambda$, $u*\lambda$ and $\sigma*\lambda$ where $\lambda$ is
+    $t\ast\lambda$, $u\ast\lambda$ and $\sigma\ast\lambda$ where $\lambda$ is
     either $\{u'/t'\}$ or $\{f(u',t')/t'\}$.
 
 7.  If $u'$ is a variable and $t'$ is not, then, if $u'$ occurs in $t'$,
     stop with failure; otherwise change $t$, $u$ and $\sigma$ to
-    $t*\lambda$, $u*\lambda$ and $\sigma*\lambda$ where $\lambda$ is
+    $t\ast\lambda$, $u\ast\lambda$ and $\sigma\ast\lambda$ where $\lambda$ is
     either $\{t'/u'\}$, or $\{f(t',u')/u'\}$.
 
 8.  Go to 2.
@@ -186,8 +215,25 @@ Infinite failures are also possible: for example, take
 
 > $t =  g(x, xa)$ and $u =  g(y, by)$.
 
-![Figure 2](fig2.png)
-Figure 2
+<figure>
+<div class="forest">
+<p>] [ <span><span
+class="math inline"><em>g</em>(<em>a</em><em>y</em>,<em>a</em><em>y</em><em>a</em>)</span><br />
+<span
+class="math inline"><em>g</em>(<em>a</em><em>y</em>,<em>a</em><em>a</em><em>y</em>)</span></span>,
+name=barny ] ] [ <span><span
+class="math inline"><em>g</em>(<em>y</em><em>x</em>,<em>y</em><em>x</em><em>a</em>)</span><br />
+<span
+class="math inline"><em>g</em>(<em>y</em>,<em>a</em><em>y</em>)</span></span>
+[<em>failure] ] [ <span><span
+class="math inline"><em>g</em>(<em>x</em>,<em>x</em><em>a</em>)</span><br />
+<span
+class="math inline"><em>g</em>(<em>x</em><em>y</em>,<em>a</em><em>x</em><em>y</em>)</span></span>
+[<em>failure] ] ] (barny) to[out=90, in=0] (wilma);</em></em></p>
+</div>
+<p><br />
+Figure 2</p>
+</figure>
 
 We conjecture that it is possible to decide whether two terms have a
 unifier -- this is essentially the same problem as deciding whether a
@@ -224,14 +270,14 @@ substitution, $\sigma$, *solves* Eq and Ineq iff:
 1.  If $x$ is a variable in Eq and Ineq then $x\sigma$ is a numeral and
     otherwise $x\sigma$ is $x$.
 
-2.  If $t = u$ is in Eq then $t*\sigma$ is identical to $u*\sigma$.
+2.  If $t = u$ is in Eq then $t\ast\sigma$ is identical to $u\ast\sigma$.
 
-3.  Every member of Ineq has a member, $t \neq u$, such that $t*\sigma$
-    is distinct from $u*\sigma$.
+3.  Every member of Ineq has a member, $t \neq u$, such that $t\ast\sigma$
+    is distinct from $u\ast\sigma$.
 
 For example, $\{3/x\}$ solves ($\{x + 2 = 5\}$, $\{\{x \neq 0\}\}$).
 
-In general $\{\sigma\mid \sigma\,$ solves Eq and Ineq $\}$ is a
+In general $\left\{\sigma\mid σ \right.$ solves Eq and Ineq $\left.\right\}$ is a
 partial recursive set, being the set of solutions of a certain set of
 Diophantine equations and inequations, effectively obtainable from Eq
 and Ineq.\
@@ -244,24 +290,24 @@ normal terms $t$ and $u$ is:
 2.  Remove equations of the form $t = t$ from Unify.
 
 3.  If Unify is empty, let $\mu$ be a substitution which solves Eq and
-    Ineq, change $\sigma$ to $\sigma*\mu$ and stop with success.
+    Ineq, change $\sigma$ to $\sigma\ast\mu$ and stop with success.
 
 4.  Remove an equation, $t = u$, from Unify.
 
 5.  If $t$ and $u$ are variables, replace Unify, Eq, Ineq and $\sigma$
-    by Unify $*\lambda$, Eq $*\lambda$, Ineq $*\lambda$ and
-    $\sigma*\lambda$ respectively, where $\lambda = \{t/u\}$.
+    by Unify $\ast\lambda$, Eq $\ast\lambda$, Ineq $\ast\lambda$ and
+    $\sigma\ast\lambda$ respectively, where $\lambda = \{t/u\}$.
 
 6.  Suppose $t$ is a variable and $u$ is a number term. If $t$ occurs in
     $u$, put $t = u$ in Eq; otherwise replace Unify, Eq, Ineq and
-    $\sigma$ by $\mathrm{Unify}*\lambda$, $\mathrm{Eq}*\lambda$,
-    $\mathrm{Ineq}*\lambda$ and $\sigma*\lambda$ respectively where
+    $\sigma$ by $\mathrm{Unify}\ast\lambda$, $\mathrm{Eq}\ast\lambda$,
+    $\mathrm{Ineq}\ast\lambda$ and $\sigma\ast\lambda$ respectively where
     $\lambda = \{u/t\}$.
 
 7.  Suppose $t$ is a variable and $u$ is a term, but not a number one.
     If $t$ occurs in $u$, stop with failure; otherwise replace Unify,
-    Eq, Ineq and $\sigma$ by $\mathrm{Unify}*\lambda$,
-    $\mathrm{Eq}*\lambda$, $\mathrm{Ineq}*\lambda$ and $\sigma*\lambda$
+    Eq, Ineq and $\sigma$ by $\mathrm{Unify}\ast\lambda$,
+    $\mathrm{Eq}\ast\lambda$, $\mathrm{Ineq}\ast\lambda$ and $\sigma\ast\lambda$
     respectively, where $\lambda = \{u/t\}$.
 
 8.  If $u$ is a variable and $t$ is not, proceed as in steps 6 and 7,
@@ -296,21 +342,21 @@ any similar evaluation theory.
 For example, suppose $t$ is $\times(x,x)$ and $u$ is
 $\times(\Delta_{4},\,\times(y,y))$, then, at the beginning of the
 algorithm, we have
-Unify $= \{\times(x,x) = \times(\Delta_{4},\,\times(y,y))\}$,
-Eq $=$ Ineq $= \varnothing$ and $\sigma = \varepsilon$.
+Unify $ = \{\times(x,x) = \times(\Delta_{4},\,\times(y,y))\}$,
+Eq $=$ Ineq $=\varnothing\}$ and $\sigma = \varepsilon$.
 Next, the execution sequence splits at step (11). Either Unify becomes
 $\varnothing$, Eq becomes
 $\{\times(x,x) = \times(\Delta_{4},\,\times(y,y))\}$, Ineq becomes
 $\{\{x \neq \Delta_{4},\,x \neq \times(y,y)\}\}$ and $\sigma$ still has
 the value $\varepsilon$, or else Unify becomes
-$\{x = \Delta_{4}, x = \times(y,y)\}$, Eq and Ineq remain at
+$\{x = \Delta_{4},\,x = \times(y,y)\}$, Eq and Ineq remain at
 $\varnothing$ and $\sigma$ at $\varepsilon$. In the first case, the
 algorithm stops successfully at step (3), via a $\mu$ of the form
 $\{\Delta_{2n}/x,\,\Delta_{n}/y\}$, where $n \geqslant 0$ and
 $n \neq 2$, and then $\sigma = \mu$. In the second case, supposing
 $x = \Delta_{4}$ to be chosen at step (2), after step (6) we have
 Unify $= \{\Delta_{4} = \times(y,y)\}$,
-Eq $=$ Ineq $= \varnothing$ and
+Eq $=$ Ineq $=\varnothing\}$ and
 $\sigma = \{\Delta_{4}/x\}$. After steps (9) and (3), this execution
 path terminates with $\sigma = \{\Delta_{4}/x,\,\Delta_{2}/y\}$. If the
 commutativity and associativity of $\times$ were also built-in, one
@@ -353,7 +399,7 @@ $v(t)$ by replacing that distinguished occurrence of $t$ in $v$ by one
 of $u$.
 
 The letters $L$, $M$, $\ldots$ range over literals. The general form of
-a literal is $(\pm)$$P(t_{1},\ldots,t_{n})$. $\bar{L}$ is like $L$, but
+a literal is $(\pm)P(t_{1},\ldots,t_{n})$. $\bar{L}$ is like $L$, but
 has opposite sign.
 
 The letters $C$, $D$, $\ldots$ range over clauses. By convention,
@@ -389,8 +435,8 @@ language $L$. In order to allow for Skolem function symbols we make:
 > *Assumption 1*. $L$ contains infinitely many function symbols of each
 > degree, none of which occur in $\mathrm{T}$.
 
-Suppose $L$ has the form $(\pm) P(t_{1}, \ldots,\,t_{n})$ and $M$ has
-the form $(\pm) Q(u_{1}, \ldots,\,u_{m})$. Then if $P$ is not the
+Suppose $L$ has the form $(\pm)P(t_{1}, \ldots,\,t_{n})$ and $M$ has
+the form $(\pm)Q(u_{1}, \ldots,\,u_{m})$. Then if $P$ is not the
 equality symbol, $\vdash_{\mathrm{T}}L \equiv M$ iff $P$ and $Q$ are
 identical, $L$ and $M$ have the same sign and,
 $\vdash_{\mathrm{T}}t_{i} = u_{i}$, ($1 \leqslant i \leqslant n$).
@@ -407,8 +453,8 @@ Define an equivalence relation, $\sim$, between literals by:
 
 > If the equality symbol does not occur in $L$, then $L \sim M$ iff
 > $\vdash_{\mathrm{T}}L \equiv M$.\
-> If it occurs with the same sign in both, $L$ is $(\pm) t = u$ and $M$
-> is $(\pm)$$v = w$, then $L \sim M$ iff
+> If it occurs with the same sign in both, $L$ is $(\pm)t = u$ and $M$
+> is $(\pm)v = w$, then $L \sim M$ iff
 > $\vdash_{\mathrm{T}}(t = v)\wedge(u = w)$ or
 > $\vdash_{\mathrm{T}}(t = w)\wedge(u = v)$.\
 > Otherwise, $L \nsim M$.
@@ -421,7 +467,7 @@ occurrence of the equality symbol, then $C'\cup D'$ is a *ground*
 $\mathrm{T}$-*resolvent* of $C = C'\lor C''$ and $D = D'\lor D''$.
 
 If $C = C'\lor t_{1} = u_{1}\vee\ldots\lor t_{n} = u_{n}(n > 0)$,
-$D=D'\lor D''$, $(\pm)\,P(v_{1},\ldots,v_{j_{0}},$$\ldots,v_{m})$ is in
+$D=D'\lor D''$, $(\pm)\,P(v_{1},\ldots,v_{j_{0}},\ldots,v_{m})$ is in
 $D''$, $\{t_{i} = u_{i}\mid i=1,\,n\}$ and $D''$ are $\mathrm{T}$-units
 and $\vdash_{\tau}v_{j_{0}} = w(t_{1})$ then
 
@@ -445,19 +491,19 @@ $\{v=v'\}$ is in Eq and $u=w(v'/v)$. Note that if $t\approx_{1}u$ and
 $\vdash_{\rm T}\,u=v$ then for some $w$, $v\approx_{1}w$ and
 $\vdash_{\rm T}\,w=t$, that if $\vdash_{\rm T}\,t=u$ and
 $u_{1}\approx_{1}w$ then $t\approx_{1}w$, and if $t_{j}\approx_{1}u$
-then $f(t_{1},\ldots,t_{n})\approx_{1}f(t_{1},\ldots, t_{j-1},u$,
-$t_{j+1},\ldots, t_{n})$.
+then $f(t_{1},\ldots,t_{n})\approx_{1}f(t_{1},\ldots, t_{j-1},u,
+t_{j+1},\ldots, t_{n})$.
 
 Now define $\approx$ by: $t\approx u$ iff there are $t_{i}(n\geqslant 1$
 and $1\leqslant i\leqslant n)$ such that
 
 $t=t_{1}\approx_{1}\cdots\approx_{1}t_{n}$ and $\vdash t_{n}=u$.
 
-*Lemma 1*. $t \approx u$ iff $\vdash_{\mathrm{T}\cup Eq}t = u$,
+*Lemma 1*. $t \approx u$ iff $\vdash_{T∪ \mathrm{Eq}}t = u$,
 if $t$ and $u$ are ground terms.
 
 *Proof*. Evidently $t \approx u$ implies
-$\vdash_{\mathrm{T} \cup {Eq}}t = u$. Conversely, the properties
+$\vdash_{\mathrm{T} \cup \mathrm{Eq}}t = u$. Conversely, the properties
 of $\approx_{1}$ ensure that $\approx$ is a congruence relation. With
 the usual square bracket notation for congruence classes, define an
 interpretation, $\cal A$, whose domain is the set of congruence classes
@@ -588,7 +634,7 @@ and $V$ for which there is no such $\Gamma$, although we expect that one
 exists.
 
 However we make:\
-*Assumption 2*. There is a partial recursive predicate
+*Assumption 2*.: There is a partial recursive predicate
 $P(\mathcal{E},\sigma,V)$ such that
 $\Gamma(\mathcal{E},V)=\{\sigma\mid P(\mathcal{E},\sigma,V)\}$ is a
 
@@ -770,7 +816,7 @@ away from $V$ iff:
 3.  If $M$, $M'$ are distinct members of $\Delta$ then for every
     $\lambda$, $M\lambda\nsim M'$.
 
-4.  If $M$ is in $\Delta$, $\operatorname{Var}(M)\cap V = \varnothing$.
+4.  If $M$ is in $\Delta$, Var $(M)\cap$$V$=$\varnothing$.
 
 In our opinion, this concept cannot, in general, be made the basis of a
 complete inference system; a counterexample will be given later.
@@ -801,9 +847,9 @@ substitution $\eta$ such that:
 
 2.  $\{u/x\}\eta=\eta\{u/x\},$
 
-3.  $x$ has the same occurrence in $t$ as $u$ in $v$, and
+3.  $x$ has the same occurrence in $t$ as $u$ in $v,$ and
 
-4.  $\operatorname{Var}(t)\cap\operatorname{Var}(v)=\varnothing$.
+4.  Var $(t)\cap$ Var $(v)=\varnothing$.
 
 We assume available a function, $Sp,$ from finite sets of variables to
 special pairs such that:
@@ -812,8 +858,8 @@ special pairs such that:
 
 2.  No two distinct members of $Sp(V)$ are alphabetic variants.
 
-3.  If $\langle x, t\rangle$ is in $Sp(V),$ 
-    $\operatorname{Var}(t)\cap V=\varnothing$.
+3.  If $\langle x, t\rangle$ is in $Sp(V)$, Var
+    $(t)\cap V=\varnothing$.
 
 Suppose $C=C'\lor t_{1}=u_{n}\vee\ldots\lor\ t_{n}=u_{n}(n>0)$,
 $D=D'\lor D''$, $(\pm)P(v_{1}, \ldots, v_{j_{0}}, \ldots, v_{m})$ is in
@@ -892,7 +938,8 @@ $\sigma''=\sigma' \eta$, as $C \mu$ and $D v$ are ground.
 
 Now, let $( \pm) P\left(v_1, \ldots, v_m\right)$ be a literal in $D''$
 such that $( \pm) P\left(v_1, \ldots, v_m\right) \sigma'$
-$=( \pm) P\left(v_1', \ldots, v_m'\right)$. We have, $$\begin{aligned}
+$=( \pm) P\left(v_1', \ldots, v_m'\right)$. We have,
+$$\begin{aligned}
     v_{j_0} \sigma'' & =v_{j_0}', \\
     \vdash_{\mathrm{T}} v_{j_0}' & =v'(t) \text { and } \\
     v'(t) & =w\{t / x\} \eta=w\left\{t_1 \xi_{C, D} \sigma' / x\right\} \eta \\
@@ -922,19 +969,20 @@ $$\begin{aligned}
     & =w\left\{u_1 \xi_{C, D} \sigma' / x\right\} \eta \quad\left(\text{as } \sigma' \upharpoonright \operatorname{Var}(w)=\varepsilon\right) \\
     & =w\{u / x\} \eta \\
     & =v'(u / t),
-\end{aligned}$$ 
+\end{aligned}$$
+
 $$\begin{aligned}
     E \lambda &=C' \xi_{C, D} \sigma \lambda \cup D' \sigma \lambda \cup\left\{( \pm ) P \left(v_1 \sigma \lambda, \ldots, v_{j_0-1} \sigma \lambda, w\left\{u_1 \xi_{C, D} / x\right\} \sigma \lambda,\right.\right. \\
     & \qquad \qquad \left.\left.v_{j_0+1} \sigma \lambda, \ldots, v_m \sigma \lambda\right)\right\} \\
     & \subseteq C' \xi_{C, D} \sigma'' \cup D' \sigma'' \cup\left\{( \pm ) P \left(v_1 \sigma'', \ldots, v_{j_0-1} \sigma'', w\left\{u_1 \xi_{C, D} / x\right\} \sigma''\right.\right. \\
     & \qquad  \qquad \left.\left.v_{j_0+1} \sigma'', \ldots, v_m \sigma''\right)\right\} \\
     & =C' \xi_{C, D} \sigma'' \cup D' \sigma'' \cup\left\{( \pm) P\left(v_1', \ldots, v_{j_0-1}', v'(u / t), v_{j_0+1}', \ldots, v_m'\right)\right\} \\
-    & =E' \text {, concluding the proof. } \\
-    &
+    & =E',
 \end{aligned}$$
+concluding the proof.
 
 *Theorem 3*. If $S$ is a non-empty set of non-empty clauses such that
-$S\cup \mathrm{T}$ has no model, there is a derivation of the null clause from
+$S\cup T$ has no model, there is a derivation of the null clause from
 $S$ using the rules given above.
 
 *Proof*. First it is shown by induction on derivation size (that is, the
@@ -968,16 +1016,16 @@ $E\lambda\stackrel{{\subset}}{{\sim}}E''$, concluding this case.
 
 A similar proof works in the other two cases.
 
-Now, as $S\cup \mathrm{T}$ has no model, there are, by Herbrand's Theorem,
+Now, as $S\cup T$ has no model, there are, by Herbrand's Theorem,
 substitutions $\sigma_{i}$, such that $\bigcup\limits_{i}(S\sigma_{i})$
-is ground and $\bigcup\limits_{i}(S\sigma_{i})\cup \mathrm{T}$ has no model.
+is ground and $\bigcup\limits_{i}(S\sigma_{i})\cup T$ has no model.
 Hence by theorem 1, there is a ground derivation of the null-clause from
 $\bigcup\limits_{i}(S\sigma_{i})$. By the above, there is a general
 derivation of a clause $E$ from $S$ and a $\lambda$ such that
 $E\lambda\stackrel{{\subset}}{{\sim}}\varnothing$. Then
-$E = \varnothing$, concluding the proof.
+$E$=$\varnothing$, concluding the proof.
 
-Kowalski (1968) proved that, when $\mathrm{T} = \varnothing$ one need only
+Kowalski (1968) proved that, when T = $\varnothing$ one need only
 paramodulate into the functional reflexivity axioms, not from them, and
 all other paramodulations can be primary. Theorem 3 strengthens this
 result: special pairs take the place of the functional reflexivity
@@ -985,11 +1033,11 @@ axioms. One can also insist on $P1$ and $A$-ordering restrictions,
 analogous to Kowalskis, without losing completeness.
 
 Other refinements are possible. For example one can define an
-$E$-$\mathrm{T}$-resolution rule and a corresponding
+$E$-T-resolution rule and a corresponding
 $E$-$\mathrm{T}$-trivialisation one analogous to $E$-resolution (Morris,
 1969). These two rules form a complete set. If one regards an
-$E$-$\mathrm{T}$-resolution as a many-input rule, rather than a deduction using
-several $\mathrm{T}$-paramodulations and a $\mathrm{T}$-resolution (and similarly
+$E$-T-resolution as a many-input rule, rather than a deduction using
+several $\mathrm{T}$-paramodulations and a T-resolution (and similarly
 for $E$-$\mathrm{T}$-trivialisation), and says that a clause has
 *support* if it is in the support set or is obtained by a rule
 application with a clause with support in its input set, the resulting
@@ -1012,8 +1060,8 @@ We do not know how to formulate the paramodulation conjecture, as the
 obvious way fails.
 
 If $C=C'\lor C''$ and $\sigma$ is in
-$\Gamma(\{C\},\,\operatorname{Var}\,\,(C))$, then if $L$ is in $C''$,
-$C'\sigma\cup\{L\sigma\}$ is a $\operatorname{T}$-*factor* of $C$, with
+$\Gamma(\{C\},\,$ Var $(C))$, then if $L$ is in $C''$,
+$C'\sigma\cup\{L\sigma\}$ is a $\mathrm{T}$-*factor* of $C$, with
 *distinguished literal* $L\sigma$.
 
 If $C'=C''\lor t=u$ is a $\mathrm{T}$-factor of $C$ with distinguished
@@ -1058,7 +1106,7 @@ Let $C'=C''\lor L$ and $D'=D''\lor L'$ be $\mathrm{T}$-factors of
 clauses $C$ and $D$, with distinguished literals $L$ and $L'$
 respectively. If $M$ is in a general matching set of literals for
 $L\xi_{C', D'}$, and $\bar{L'}$ away from
-$\operatorname{Var} (C'\xi_{C', D'}\cup D')$, $\sigma$ is such that
+Var $(C'\xi_{C', D'}\cup D')$, $\sigma$ is such that
 $L\xi_{C', D'}\sigma\sim M\sim\bar{L'}\sigma$, and the equality symbol
 does not occur in $L$, then $C''\xi_{C', D'}\sigma\cup D''\sigma$ can be
 deduced from $C$ and $D$ by the rule.
@@ -1069,9 +1117,9 @@ $V$ exist, for all $L$, $L'$and $V$, and furthermore the required
 $\sigma$s in the definition of the rule can be calculated from
 $L'\xi_{C', D'}$, $M$ and $L'$.
 
-However, if $S = \{\overline{P}\left(ax,aa\right)$,
-$\overline{Q}\left(aa,ax\right),P\left(yz,x\right)\lor Q\left(y,xw\right)\}$
-then $S\cup T$ is unsatisfiable but $S$ has no refutation by the
+However, if $S=\{\overline{P}\left(ax,aa\right),
+\overline{Q}\left(aa,ax\right),P\left(yz,x\right)\lor Q\left(y,xw\right)\}$
+then $S \cup T$ is unsatisfiable but $S$ has no refutation by the
 above rule.
 
 ## Efficiency
@@ -1083,7 +1131,7 @@ difficulty as far as the Hart-Nilsson *theory* is concerned (Kowalski
 using terms with parameters. These have already been used informally in
 the introduction.
 
-Sometimes, as when $\mathrm{T}$ is the theory of an associative function, the
+Sometimes, as when T is the theory of an associative function, the
 unifiers are generated as successful nodes in a search tree. In this
 case the unification search tree can be incorporated in the general
 search space and one can save the unused parts.
@@ -1120,16 +1168,15 @@ $\{\overline{P}\left(ax\right)$, $P\left(yb\right)\}$ have two
 $\mathrm{T}$-unifiers ($\{a/y$, $b/x\}$ and $\{ay/y,yb/x\}$ but there
 are infinitely many standard refutations of
 $\{\overline{P}\left(ax\right),P\left(yb\right)\}$, which essentially
-produce the $\mathrm{T}$-unifiers, $\{ay_{1}\ldots y_{n}/y$,
-$y_{1}\ldots y_{m}b/x \mid m \geqslant 0\}$. Each of these unifiers
+produce the $\mathrm{T}$-unifiers, $\{ay_{1}\ldots y_{n}/y, y_{1}\ldots y_{m}b/x \mid m \geqslant 0\}$. Each of these unifiers
 can be produced in many different ways, involving arbitrarily long
 detours of bracket swapping.
 
 As another example, consider
 $\{\overline{P}\left(x,y,xy\right),P\left(z,w,wz\right)\}$ which has
-aninfinite set of refutations involving the $\mathrm{T}$-unifiers
+an infinite set of refutations involving the $\mathrm{T}$-unifiers
 $\{\{w^{m}/z,w^{m}/x,w^{n}/y,w^{n}/w\} \mid m$ and $n$ positive integers
-with greatest common divisor unity$\}$. The standard method essentially
+with greatest common divisor unity $\}$. The standard method essentially
 produces the denser set:
 
 > $\{\{w^{m}/z, w^{m}/x, w^{n}/y, w^{n}/w\}\mid m, n>0\}$.
